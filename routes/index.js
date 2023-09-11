@@ -11,3 +11,4 @@ router.post('/submit-idea', SubmissionController.submit)
 router.post('/register-team', RegisterCotroller.register)
 
 export default router
+

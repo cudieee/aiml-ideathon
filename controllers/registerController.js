@@ -3,18 +3,35 @@ import CustomErrorHandler from '../services/CustomErrorHandler'
 const RegisterCotroller = {
   async register (req, res, next) {
     try {
-      const { email, teamName } = req.body
+      const { email, teamName, teamLeaderMobile, teamLeaderUID } = req.body
       const user = await Team.findOne({ email })
       const team_name = await Team.findOne({ teamName: teamName })
+      const uid = await Team.findOne({ teamLeaderUID: teamLeaderUID })
+      const mobile = await Team.findOne({
+        teamLeaderMobile: teamLeaderMobile
+      })
 
       if (user)
-        return next(CustomErrorHandler.alreadyExists('This User Alredy Exists'))
+        return next(
+          CustomErrorHandler.alreadyExists('This Email Alredy Exists')
+        )
 
       if (team_name)
         return next(CustomErrorHandler.alreadyExists('Team Name not Available'))
 
+      if (mobile)
+        return next(
+          CustomErrorHandler.alreadyExists('Mobile Already Registered')
+        )
+
+      if (uid)
+        return next(
+          CustomErrorHandler.alreadyExists('Leaders UID Already Registered')
+        )
+        
+
       const newTeam = new Team(req.body)
-      await newTeam.save();
+      await newTeam.save()
 
       res
         .status(201)

@@ -35,6 +35,11 @@ const teamSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
+  teamLeaderMobile: {
+    type: String,
+    unique: true,
+    required: true,
+  },
   yearAndDepartmentOfStudy: {
     type:String,
     required:true
