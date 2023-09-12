@@ -1,6 +1,9 @@
 import express from 'express'
-import SubmissionController from '../controllers/submissionController'
-import RegisterCotroller from '../controllers/registerController'
+import {
+  SubmissionController,
+  GetController,
+  RegisterCotroller
+} from '../controllers'
 const router = express.Router()
 
 router.get('/', (req, res) => {
@@ -10,5 +13,6 @@ router.get('/', (req, res) => {
 router.post('/submit-idea', SubmissionController.submit)
 router.post('/register-team', RegisterCotroller.register)
 
-export default router
+router.get('/get/teamdetailes', GetController.getRegistration)
 
+export default router
