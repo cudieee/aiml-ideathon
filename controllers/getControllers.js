@@ -17,7 +17,6 @@ const GetController = {
     try {
       const { id } = req.params
       const response = await Team.findByIdAndDelete({ _id: id })
-      console.log(response)
       res.json({ message: 'Successfully Deleted' })
     } catch (error) {
       next(CustomErrorHandler.error)
