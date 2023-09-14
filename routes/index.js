@@ -15,4 +15,6 @@ router.post('/register-team', RegisterCotroller.register)
 
 router.get('/get/teamdetailes', GetController.getRegistration)
 
+router.delete('/delete/:id', GetController.deleteentries)
+
 export default router
