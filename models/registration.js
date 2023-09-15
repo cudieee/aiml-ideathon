@@ -7,7 +7,6 @@ const teamMemberSchema = new mongoose.Schema({
   },
   uid: {
     type: String,
-    unique: true,
     required: true
   },
   year: {
@@ -24,7 +23,6 @@ const teamSchema = new mongoose.Schema(
   {
     teamName: {
       type: String,
-      unique: true,
       required: true
     },
     teamLeaderName: {
@@ -33,12 +31,10 @@ const teamSchema = new mongoose.Schema(
     },
     teamLeaderUID: {
       type: String,
-      unique: true,
       required: true
     },
     teamLeaderMobile: {
       type: String,
-      unique: true,
       required: true
     },
     yearAndDepartmentOfStudy: {
@@ -47,7 +43,6 @@ const teamSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      unique: true,
       required: true
     },
     teamSize: {
@@ -61,7 +56,6 @@ const teamSchema = new mongoose.Schema(
     },
     problemStatement: {
       type: String,
-      unique: true,
       required: true
     }
   },
