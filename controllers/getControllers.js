@@ -13,7 +13,11 @@ const GetController = {
 
   async getSubmission (req, res, next) {
     try {
-      const submissions = await Submissions.find().sort({ entryDate: -1 }).populate('team').select('-pdfFile.data -pptFile.data').exec()
+      const submissions = await Submissions.find()
+        .sort({ entryDate: -1 })
+        .populate('team')
+        .select('-pdfFile.data -pptFile.data')
+        .exec()
 
       console.log(submissions)
       res.json(submissions)
@@ -22,7 +26,6 @@ const GetController = {
       next(CustomErrorHandler.error)
     }
   },
-
 
   async deleteentries (req, res, next) {
     try {
@@ -36,9 +39,11 @@ const GetController = {
 
   async getTeamNames (req, res, next) {
     try {
-      const teams = await Team.find().select(
-        '-__v -createdAt -updatedAt -teamSize -teamMembers -yearAndDepartmentOfStudy -teamLeaderMobile -email'
-      )
+      const teams = await Team.find()
+        .select(
+          '-__v -createdAt -updatedAt -teamSize -teamMembers -yearAndDepartmentOfStudy -teamLeaderMobile -email'
+        )
+        .sort({ teamName: 1 })
       res.json(teams)
     } catch (error) {
       next(CustomErrorHandler.error)
