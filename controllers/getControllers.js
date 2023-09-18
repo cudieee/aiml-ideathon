@@ -1,4 +1,5 @@
 import { Submissions, Team } from '../models'
+import Links from '../models/linkSub'
 import CustomErrorHandler from '../services/CustomErrorHandler'
 const GetController = {
   async getRegistration (req, res, next) {
@@ -44,6 +45,14 @@ const GetController = {
         )
         .sort({ teamName: 1 })
       res.json(teams)
+    } catch (error) {
+      next(CustomErrorHandler.error)
+    }
+  },
+  async getLinks (req, res, next) {
+    try {
+      const data = await Links.find().populate('team').sort({ createdAt: 1 })
+      res.json(data);
     } catch (error) {
       next(CustomErrorHandler.error)
     }

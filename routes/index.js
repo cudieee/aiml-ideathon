@@ -29,6 +29,7 @@ router.get('/download/pdf/:team_id', DownloadControllers.downloadPdf)
 router.get('/get/teamdetailes', GetController.getRegistration)
 router.get('/get/teams', GetController.getTeamNames)
 router.get('/get/submissions', GetController.getSubmission)
+router.get('/get/link/subs', GetController.getLinks)
 
 router.delete('/delete/:id', GetController.deleteentries)
 router.delete('/delete-sub/:id', SubmissionController.deleteSub)
