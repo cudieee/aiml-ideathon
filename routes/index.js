@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
 
 // User
 router.post('/upload/submission', upload.any(), SubmissionController.submit)
+router.post('/upload/link', upload.any(), SubmissionController.linkSub)
 router.post('/register-team', RegisterCotroller.register)
 
 // Download Files
@@ -30,5 +31,6 @@ router.get('/get/teams', GetController.getTeamNames)
 router.get('/get/submissions', GetController.getSubmission)
 
 router.delete('/delete/:id', GetController.deleteentries)
+router.delete('/delete-sub/:id', SubmissionController.deleteSub)
 
 export default router

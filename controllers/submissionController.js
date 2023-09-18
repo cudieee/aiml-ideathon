@@ -1,5 +1,5 @@
-import { Submissions } from '../models'
-
+import { Link, Submissions } from '../models'
+import CustomErrorHandler from '../services/CustomErrorHandler'
 const SubmissionController = {
   async submit (req, res, next) {
     try {
@@ -29,6 +29,32 @@ const SubmissionController = {
     } catch (error) {
       console.error(error)
       res.status(500).json({ message: 'Server error' })
+    }
+  },
+  async deleteSub (req, res, next) {
+    try {
+      const { id } = req.params
+      console.log('id ', id)
+      const response = await Submissions.findByIdAndDelete({ _id: id })
+      res.json({ message: 'Successfully Deleted' })
+    } catch (error) {
+      console.log(error)
+      next(CustomErrorHandler.error)
+    }
+  },
+  async linkSub (req, res, next) {
+    try {
+      const { link, team_id } = req.body
+
+      const linkSub = new Link({
+        team: team_id,
+        link
+      })
+
+      await linkSub.save()
+      res.status(200).json({ message: 'Link uploaded successfully' })
+    } catch (error) {
+      next(CustomErrorHandler.error)
     }
   }
 }

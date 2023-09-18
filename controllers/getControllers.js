@@ -19,7 +19,6 @@ const GetController = {
         .select('-pdfFile.data -pptFile.data')
         .exec()
 
-      console.log(submissions)
       res.json(submissions)
     } catch (error) {
       console.log(error)
